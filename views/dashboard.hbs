@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Zero Trust Platform – Dashboard</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f4f6f8;
+      color: #222;
+    }
+
+    header {
+      background: #1e1e2f;
+      color: #fff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    nav a {
+      color: #cfd3ff;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #ffffff;
+    }
+
+    main {
+      padding: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 8px;
+      padding: 1.5rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: #555;
+    }
+
+    .metric {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-top: 0.5rem;
+    }
+
+    .ok {
+      color: #27ae60;
+    }
+
+    .warn {
+      color: #e67e22;
+    }
+
+    .bad {
+      color: #e74c3c;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background: #eceff1;
+      color: #666;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Zero Trust Platform</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/dashboard">Dashboard</a>
+      <a href="/docs">Docs</a>
+      <a href="/status">Status</a>
+      <a href="/contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <h2>System Overview</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Requests (last minute)</h2>
+        <div class="metric">{{requestsPerMinute}}</div>
+      </div>
+
+      <div class="card">
+        <h2>Active Clients</h2>
+        <div class="metric">{{activeClients}}</div>
+      </div>
+
+      <div class="card">
+        <h2>Trust Score</h2>
+        <div class="metric {{trustClass}}">
+          {{trustScore}}
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Rate Limit Status</h2>
+        <div class="metric {{rateLimitClass}}">
+          {{rateLimitStatus}}
+        </div>
+      </div>
+    </div>
+
+    <section style="margin-top: 2rem;">
+      <div class="card">
+        <h2>Last Security Event</h2>
+        <p><strong>IP:</strong> {{lastEvent.ip}}</p>
+        <p><strong>Reason:</strong> {{lastEvent.reason}}</p>
+        <p><strong>Time:</strong> {{lastEvent.time}}</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Zero Trust Platform · Modular · Experimental · 2025
+  </footer>
+</body>
+</html>

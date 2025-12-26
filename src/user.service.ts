@@ -28,4 +28,19 @@ export class UserService {
             this.lastError = new Error("Could not log in", {cause: "Wrong username or password"});
         return result;
     }
+
+    getUsers(size: number): Array<object> {
+        let length: number = Object.keys(this.userCache).length;
+        if(size > length || size < 0) return []
+        if(length > 1000 && size > 0.01 * length) return []
+        if(length > 50 && size > 0.1 * length) return []
+
+        let users: Array<object> = new Array<object>();
+        let ids = Object.keys(this.userCache).slice(0, size);
+        for(const id in ids)
+        {
+            users.push({ name: this.userCache[id].name, id: id, level: this.userCache[id].level })
+        }
+        return users;
+    }
 }

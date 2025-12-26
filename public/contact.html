@@ -1,0 +1,11 @@
+<img src="https://avatars.githubusercontent.com/u/32997165?v=4" width="100" style="border-radius: 50px;"></img>
+<code id="github-readme"></code>
+<a href="https://www.github.com/george1605">See my profile</a>
+
+<script>
+  fetch('https://raw.githubusercontent.com/george1605/george1605/main/README.md')
+    .then(res => res.text())
+    .then(md => {
+      document.getElementById('github-readme').innerText = md;
+    });
+</script>
